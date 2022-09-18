@@ -50,6 +50,16 @@ function start(client) {
               "buttonText": {
                 "displayText": "Text of Button 2"
                 }
+              },
+            {
+              "buttonText": {
+                "displayText": "Text of Button 3"
+                }
+              },
+            {
+              "buttonText": {
+                "displayText": "Text of Button 4"
+                }
               }
             ]
         console.log("msg from",message.from)
@@ -60,7 +70,7 @@ function start(client) {
         //   .catch((erro) => {
         //     console.error('Error when sending: ', erro); //return object error
         //   });
-        await client.sendButtons('9909912610@c.us', 'Title', buttons, 'Description')
+        await client.sendButtons(message.from, 'Title', buttons, 'Description')
             .then((result) => {
                 console.log('Result: ', result); //return object success
             })
