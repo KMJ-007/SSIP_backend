@@ -1,0 +1,24 @@
+{
+  "name": "ssip_backend",
+  "version": "1.0.0",
+  "description": "This is the backend of the GTU Chat-Bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "run_bot":"nodemon Bot.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KMJ-007/SSIP_backend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KMJ-007/SSIP_backend/issues"
+  },
+  "homepage": "https://github.com/KMJ-007/SSIP_backend#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "venom-bot": "^4.3.0"
+  }
+}
