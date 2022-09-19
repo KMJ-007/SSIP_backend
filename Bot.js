@@ -32,7 +32,7 @@ function start(client) {
                     ]
                 }
             ];
-            client.sendListMenu(message.from, '', '', 'Select the Course from the below list :', 'Select', courseList)
+            client.sendListMenu(message.from, '', '', 'Course enrolled:', 'Select', courseList)
                 .then((result) => {
                     // console.log('Result: ', result); //return object success
                     console.log("A List is requested from " + message.from);
@@ -56,7 +56,7 @@ function start(client) {
                     ]
                 }
             ];
-            await client.sendListMenu(message.from, '', '', 'Select the branch form the the below list:', 'Select', courseList)
+            await client.sendListMenu(message.from, '', '', 'For which branch would like to inquire ?', 'Select', courseList)
                 .then((result) => {
                     // console.log('Result: ', result); //return object success
                     console.log("A List is requested from " + message.from);
@@ -123,9 +123,11 @@ function start(client) {
             console.log(message);
 
             await client
-                .sendLinkPreview(
+                .sendFile(
                     message.from,
-                    GTU.Course.BE.Computer_Engineering.one[message.body]
+                    GTU.Course.BE.Computer_Engineering.one[message.body],
+                    message.body + ' Syllabus',
+                    'See my file in pdf'
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
@@ -164,9 +166,11 @@ function start(client) {
             console.log(message);
 
             await client
-                .sendLinkPreview(
+                .sendFile(
                     message.from,
-                    GTU.Course.BE.Computer_Engineering.three[message.body]
+                    GTU.Course.BE.Computer_Engineering.three[message.body],
+                    message.body + ' Syllabus',
+                    'See my file in pdf'
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
@@ -202,11 +206,12 @@ function start(client) {
         //***************************************Effective Technical Communication
         else if (!(GTU.Course.BE.Computer_Engineering.four[message.body] == undefined) && message.isGroupMsg === false) {
             console.log(message);
-
             await client
-                .sendLinkPreview(
+                .sendFile(
                     message.from,
-                    GTU.Course.BE.Computer_Engineering.four[message.body]
+                    GTU.Course.BE.Computer_Engineering.four[message.body],
+                    message.body + ' Syllabus',
+                    'See my file in pdf'
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
@@ -247,9 +252,11 @@ function start(client) {
             console.log(message);
 
             await client
-                .sendLinkPreview(
+                .sendFile(
                     message.from,
-                    GTU.Course.BE.Computer_Engineering.five[message.body]
+                    GTU.Course.BE.Computer_Engineering.five[message.body],
+                    message.body + ' Syllabus',
+                    'See my file in pdf'
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
@@ -291,9 +298,11 @@ function start(client) {
             console.log(message);
 
             await client
-                .sendLinkPreview(
+                .sendFile(
                     message.from,
-                    GTU.Course.BE.Computer_Engineering.six[message.body]
+                    GTU.Course.BE.Computer_Engineering.six[message.body],
+                    message.body + ' Syllabus',
+                    'See my file in pdf'
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
@@ -338,10 +347,13 @@ function start(client) {
         else if (!(GTU.Course.BE.Computer_Engineering.seven[message.body] == undefined) && message.isGroupMsg === false) {
             console.log(message);
 
+
             await client
-                .sendLinkPreview(
+                .sendFile(
                     message.from,
-                    GTU.Course.BE.Computer_Engineering.seven[message.body]
+                    GTU.Course.BE.Computer_Engineering.seven[message.body],
+                    message.body + ' Syllabus',
+                    'See my file in pdf'
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
@@ -373,9 +385,11 @@ function start(client) {
             console.log(message);
 
             await client
-                .sendLinkPreview(
+                .sendFile(
                     message.from,
-                    GTU.Course.BE.Computer_Engineering.eight[message.body]
+                    GTU.Course.BE.Computer_Engineering.eight[message.body],
+                    message.body + ' Syllabus',
+                    'See my file in pdf'
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
@@ -386,8 +400,104 @@ function start(client) {
         }
 
 
+        //********************************* Admission section
+        else if (message.body === 'Admission' && message.isGroupMsg === false) {
+            console.log(message);
+            const AdmissionOptions = [
+                {
+                    "buttonText": {
+                        "displayText": "Admission updates"
+                    }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Past Year Cut-off"
+                    }
+                }
+            ]
+            await client.sendButtons(message.from, 'Admission Updates:', AdmissionOptions, 'Here are some options for Admission updates.')
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
 
-        // welcome message
+        }
+        else if (message.body == "Admission updates" && message.isGroupMsg === false) {
+            console.log(message);
+
+            await client
+                .sendLinkPreview(
+                    message.from,
+                    "https://admission.gtu.ac.in/circular.aspx"
+                )
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+        else if (message.body == "Past Year Cut-off" && message.isGroupMsg === false) {
+            console.log(message);
+            await client
+                .sendFile(
+                    message.from,
+                    './Data/PDFs/2021_Cutoff.pdf',
+                    '2021 Cut-off list',
+                    'See my file in pdf'
+                )
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+
+        }
+
+        //************************* Examination section
+        else if (message.body === 'Examination' && message.isGroupMsg === false) {
+            console.log(message);
+            const ExamOptions = [
+                {
+                    "buttonText": {
+                        "displayText": "Result Updates"
+                    }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Time Table"
+                    }
+                }
+            ]
+            await client.sendButtons(message.from, 'Examination Updates:', ExamOptions, 'Here are some options for Examination updates.')
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+
+        else if (!(GTU.Examination[message.body] == undefined) && message.isGroupMsg === false) {
+            console.log(message);
+
+            await client
+                .sendLinkPreview(
+                    message.from,
+                    GTU.Examination[message.body]
+                )
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+
+        //***************************** welcome message
         else if (message.isGroupMsg === false) {
             await client
                 .sendText(message.from, `Hello ${message.notifyName}!\nWelcome to GTU Portal.`)
@@ -400,19 +510,28 @@ function start(client) {
 
             const welcomeList = [
                 {
-                    title: "Query:",
-                    rows: [
-                        { title: "Course", description: "" },
-                        { title: "Admission", description: "" },
-                        { title: "Examination", description: "" }
-                    ]
+                    "buttonText": {
+                        "displayText": "Course"
+                    }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Admission"
+                    }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Examination"
+                    }
                 }
-            ];
-            client.sendListMenu(message.from, '', '', ' Please select your query:', 'Select', welcomeList)
+            ]
+            await client.sendButtons(message.from, 'What brings you to us ?', welcomeList, 'It brings us immense pleasure to be of help to you! 😊You can choose from the below mentioned options, relevant to your query:')
                 .then((result) => {
-                    // console.log('Result: ', result); //return object success
-                    console.log("A List is requested from " + message.from);
+                    console.log('Result: ', result); //return object success
                 })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
         }
 
     });

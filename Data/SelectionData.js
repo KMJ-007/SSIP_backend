@@ -7,7 +7,7 @@ const GTU = {
                     "Chemistry": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110002.pdf",
                     "English": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110002.pdf",
                     "Programming for Problem Solving": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110003.pdf",
-                    "Basic_Electrical_Engineering": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110005.pdf",
+                    "Basic Electrical Engineering": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110005.pdf",
                     "Basic Mechanical Engineeringg": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110006.pdf",
                     "Environmental Sciences": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110007.pdf",
                     "Workshop/ Manufacturing Practices": "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110012.pdf",
@@ -87,6 +87,21 @@ const GTU = {
         }
 
 
+    },
+
+
+    Admission: {
+        "Admission updates": "https://admission.gtu.ac.in/circular.aspx",
+        "Past Year Cut-off": {
+            "2021": "./"
+        }
+
+    },
+
+
+    Examination: {
+        "Result Updates": "https://www.gtu.ac.in/result.aspx",
+        "Time Table": "https://timetable.gtu.ac.in/"
     }
 }
 
