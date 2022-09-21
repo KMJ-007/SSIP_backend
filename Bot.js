@@ -216,6 +216,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage()
         }
 
 
@@ -259,6 +260,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage()
         }
 
 
@@ -300,6 +302,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage();
         }
 
 
@@ -345,6 +348,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage()
         }
 
 
@@ -391,6 +395,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage()
         }
 
 
@@ -478,6 +483,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage()
         }
 
 
@@ -535,7 +541,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-
+                endingMessage()
         }
 
         //************************* Examination section
@@ -613,6 +619,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage()
         }
 
         else if (!(GTU.ExamFeesStatus[message.body] == undefined) && message.isGroupMsg === false) {
@@ -644,6 +651,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+                endingMessage()
         }
         else if (message.body=="Other" && message.isGroupMsg === false) {
             console.log(message);

@@ -119,15 +119,15 @@ const GTU = {
     },
     EnrollmentFeesStatus: {
 
-        "210170107020": "",
-        "210170107021": "",
-        "210170107022": "",
-        "210170107023": "",
-        "210170107024": "",
-        "210170107025": "",
-        "210170107026": "",
-        "210170107027": "",
-        "210170107028": "",
+        "210170107020": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107021": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107022": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107023": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107024": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107025": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107026": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107027": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
+        "210170107028": "Kindly check your inbox 📥  and login into GTU portal through the given login credentials and complete your fee payment❗",
     }
 }
 
