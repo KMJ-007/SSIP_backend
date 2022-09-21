@@ -1,7 +1,6 @@
 // Supports ES6
 // import { create, Whatsapp } from 'venom-bot';
 const venom = require('venom-bot');
-const { ListenerLayer } = require('venom-bot/dist/api/layers/listener.layer');
 const GTU = require('./Data/SelectionData');
 
 
@@ -9,7 +8,7 @@ const GTU = require('./Data/SelectionData');
 venom
     .create({
         session: 'Test-Session', //name of session
-        multidevice: true // for version not multidevice use false.(default: true)
+        multidevice: false // for version not multidevice use false.(default: true)
     })
     .then((client) => start(client))
     .catch((erro) => {
@@ -20,7 +19,55 @@ function start(client) {
     client.onMessage(async (message) => {
         console.log(message);
         //******** */ course selection
-        if (message.body === 'Course' && message.isGroupMsg === false) {
+        if (message.body === 'Academics' && message.isGroupMsg === false) {
+            console.log(message);
+            const AcademicsOptions = [
+                {
+                    "buttonText": {
+                        "displayText": "Course"
+                    }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Admission"
+                    }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Examination"
+                    }
+                }
+            ]
+            await client.sendButtons(message.from, 'Academics:', AcademicsOptions, 'Here are some options Academic Options')
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+
+        }
+        //******** */ course selection
+        // else if (message.body === 'Fees' && message.isGroupMsg === false) {
+        //     console.log(message);
+        //     const courseList = [
+        //         {
+        //             title: "Query:",
+        //             rows: [
+        //                 { title: "Bachelor in Engineering(BE)", description: "" },
+        //                 { title: "Diploma in Engineering(DI)", description: "" },
+        //                 { title: "Bachelor in Pharmacy(BP)", description: "" }
+        //             ]
+        //         }
+        //     ];
+        //     client.sendListMenu(message.from, '', '', 'Course enrolled:', 'Select', courseList)
+        //         .then((result) => {
+        //             // console.log('Result: ', result); //return object success
+        //             console.log("A List is requested from " + message.from);
+        //         })
+        // }
+        //******** */ course selection
+        else if (message.body === 'Course' && message.isGroupMsg === false) {
             console.log(message);
             const courseList = [
                 {
@@ -463,17 +510,12 @@ function start(client) {
             const ExamOptions = [
                 {
                     "buttonText": {
-                        "displayText": "Result Updates"
-                    }
-                },
-                {
-                    "buttonText": {
                         "displayText": "Time Table"
                     }
                 },
                 {
                     "buttonText": {
-                        "displayText": "Exam Fees Status"
+                        "displayText": "Result Updates"
                     }
                 }
 
@@ -486,7 +528,33 @@ function start(client) {
                     console.error('Error when sending: ', erro); //return object error
                 });
         }
-        else if (message.body == "Exam Fees Status" && message.isGroupMsg === false) {
+        //************************* Fees section
+        else if (message.body === 'Fees' && message.isGroupMsg === false) {
+            console.log(message);
+            const ExamOptions = [
+                {
+                    "buttonText": {
+                        "displayText": "Enrollment Fees"
+                    }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Exam Fees"
+                    }
+                }
+
+            ]
+            await client.sendButtons(message.from, 'Examination Updates:', ExamOptions, 'Here are some options for Examination updates.')
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+
+        //this is for exam fees
+        else if (message.body == "Exam Fees" && message.isGroupMsg === false) {
             await client
                 .sendText(message.from, `Please enter your enrollment no.`)
                 .then((result) => {
@@ -513,7 +581,22 @@ function start(client) {
                 });
         }
 
-        else if (!(GTU.Exam_fees_Status[message.body] == undefined) && message.isGroupMsg === false) {
+        else if (!(GTU.ExamFeesStatus[message.body] == undefined) && message.isGroupMsg === false) {
+            console.log(message);
+
+            await client
+                .sendText(
+                    message.from,
+                    GTU.ExamFeesStatus[message.body]
+                )
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+        else if (message.body=="No,your exam fees is pending" && message.isGroupMsg === false) {
             console.log(message);
 
             await client
@@ -527,6 +610,27 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
+        }
+        else if (message.body=="Other" && message.isGroupMsg === false) {
+            console.log(message);
+            const OthersList = [
+                {
+                    title: "Query:",
+                    rows: [
+                        { title: "Scholarship", description: "" },
+                        { title: "100 Points Activity", description: "" },
+                        { title: "Events", description: "" },
+                        { title: "Things I should Know", description: "" },
+                        { title: "Things I should Know", description: "" },
+                    ]
+                }
+            ];
+            await client.sendListMenu(message.from, '', '', 'Select the subject:', 'Select', OthersList)
+                .then((result) => {
+                    // console.log('Result: ', result); //return object success
+                    console.log("A List is requested from " + message.from);
+                })
+           
         }
 
         //***************************** welcome message
@@ -543,17 +647,17 @@ function start(client) {
             const welcomeList = [
                 {
                     "buttonText": {
-                        "displayText": "Course"
+                        "displayText": "Academics"
                     }
                 },
                 {
                     "buttonText": {
-                        "displayText": "Admission"
+                        "displayText": "Fees"
                     }
                 },
                 {
                     "buttonText": {
-                        "displayText": "Examination"
+                        "displayText": "Other"
                     }
                 }
             ]

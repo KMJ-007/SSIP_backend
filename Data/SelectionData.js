@@ -105,17 +105,29 @@ const GTU = {
 
     },
 
-    Exam_fees_Status: {
+    ExamFeesStatus: {
 
-        "210170107020": "Yes,your fees is paied",
-        "210170107021": "No,your fees is pending",
-        "210170107022": "Yes,your fees is paied",
-        "210170107023": "No,your fees is pending",
-        "210170107024": "Yes,your fees is paied",
-        "210170107025": "No,your fees is pending",
-        "210170107026": "Yes,your fees is paied",
-        "210170107027": "No,your fees is pending",
-        "210170107028": "No,your fees is pending",
+        "210170107020": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107021": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107022": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107023": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107024": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107025": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107026": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107027": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107028": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+    },
+    EnrollmentFeesStatus: {
+
+        "210170107020": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107021": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107022": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107023": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107024": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107025": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107026": "Yes,your fees is paid\nyou can download your hall-tickit from here: https://gtu.iweb.online/Account/LoginMVC ",
+        "210170107027": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
+        "210170107028": "No,your exam fees is pending\nAmount:1500Rs\nLast Date: 25/9/2022\nYou an pay your fees here:https://gtu.iweb.online/Account/LoginMVC",
     }
 }
 
