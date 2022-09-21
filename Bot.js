@@ -3,6 +3,8 @@
 const venom = require('venom-bot');
 const GTU = require('./Data/SelectionData');
 
+const endingMessage
+
 
 
 venom
@@ -621,15 +623,27 @@ function start(client) {
                         { title: "100 Points Activity", description: "" },
                         { title: "Events", description: "" },
                         { title: "Things I should Know", description: "" },
-                        { title: "Things I should Know", description: "" },
+                        // { title: "Things I should Know", description: "" },
                     ]
                 }
             ];
-            await client.sendListMenu(message.from, '', '', 'Select the subject:', 'Select', OthersList)
+            await client.sendListMenu(message.from, '', '', 'these are', 'Select', OthersList)
                 .then((result) => {
                     // console.log('Result: ', result); //return object success
                     console.log("A List is requested from " + message.from);
                 })
+           
+        }
+        else if ((message.body=="Circular" || message.body=="Circular") && message.isGroupMsg === false) {
+            console.log(message);
+            await client
+                .sendText(message.from, `You are subscribed for new circular updates`)
+                .then((result) => {
+                    console.log(' exam fees status from ', message.from); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
            
         }
 
