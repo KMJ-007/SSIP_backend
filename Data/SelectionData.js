@@ -101,7 +101,21 @@ const GTU = {
 
     Examination: {
         "Result Updates": "https://www.gtu.ac.in/result.aspx",
-        "Time Table": "https://timetable.gtu.ac.in/"
+        "Time Table": "https://timetable.gtu.ac.in/",
+
+    },
+
+    Exam_fees_Status: {
+
+        "210170107020": "Yes,your fees is paied",
+        "210170107021": "No,your fees is pending",
+        "210170107022": "Yes,your fees is paied",
+        "210170107023": "No,your fees is pending",
+        "210170107024": "Yes,your fees is paied",
+        "210170107025": "No,your fees is pending",
+        "210170107026": "Yes,your fees is paied",
+        "210170107027": "No,your fees is pending",
+        "210170107028": "No,your fees is pending",
     }
 }
 

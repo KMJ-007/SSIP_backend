@@ -9,7 +9,7 @@ const GTU = require('./Data/SelectionData');
 venom
     .create({
         session: 'Test-Session', //name of session
-        multidevice: false // for version not multidevice use false.(default: true)
+        multidevice: true // for version not multidevice use false.(default: true)
     })
     .then((client) => start(client))
     .catch((erro) => {
@@ -18,7 +18,7 @@ venom
 
 function start(client) {
     client.onMessage(async (message) => {
-
+        console.log(message);
         //******** */ course selection
         if (message.body === 'Course' && message.isGroupMsg === false) {
             console.log(message);
@@ -470,11 +470,27 @@ function start(client) {
                     "buttonText": {
                         "displayText": "Time Table"
                     }
+                },
+                {
+                    "buttonText": {
+                        "displayText": "Exam Fees Status"
+                    }
                 }
+
             ]
             await client.sendButtons(message.from, 'Examination Updates:', ExamOptions, 'Here are some options for Examination updates.')
                 .then((result) => {
                     console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+        else if (message.body == "Exam Fees Status" && message.isGroupMsg === false) {
+            await client
+                .sendText(message.from, `Please enter your enrollment no.`)
+                .then((result) => {
+                    console.log(' exam fees status from ', message.from); //return object success
                 })
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
@@ -488,6 +504,22 @@ function start(client) {
                 .sendLinkPreview(
                     message.from,
                     GTU.Examination[message.body]
+                )
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+
+        else if (!(GTU.Exam_fees_Status[message.body] == undefined) && message.isGroupMsg === false) {
+            console.log(message);
+
+            await client
+                .sendText(
+                    message.from,
+                    GTU.Exam_fees_Status[message.body]
                 )
                 .then((result) => {
                     console.log('Result: ', result); //return object success
