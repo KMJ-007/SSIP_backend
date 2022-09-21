@@ -3,7 +3,39 @@
 const venom = require('venom-bot');
 const GTU = require('./Data/SelectionData');
 
-const endingMessage
+const endingMessage=async ()=>{
+    // const EndingButtons = [
+    //     {
+    //         "buttonText": {
+    //             "displayText": "Yes"
+    //         }
+    //     },
+    //     {
+    //         "buttonText": {
+    //             "displayText": "No"
+    //         }
+    //     }
+    // ]
+    // await client.sendButtons(message.from, 'Are you satisfied?', EndingButtons, 'Hope you got your answers.')
+    //     .then((result) => {
+    //         console.log('Result: ', result); //return object success
+    //     })
+    //     .catch((erro) => {
+    //         console.error('Error when sending: ', erro); //return object error
+    //     });
+
+    await client
+    .sendText(
+        message.from,
+        "Thank you!! Hope we solved your Query 😊"
+    )
+    .then((result) => {
+        console.log('Result: ', result); //return object success
+    })
+    .catch((erro) => {
+        console.error('Error when sending: ', erro); //return object error
+    });
+}
 
 
 
@@ -36,7 +68,7 @@ function start(client) {
                 },
                 {
                     "buttonText": {
-                        "displayText": "Examination"
+                        "displayText": "Exam"
                     }
                 }
             ]
@@ -507,7 +539,7 @@ function start(client) {
         }
 
         //************************* Examination section
-        else if (message.body === 'Examination' && message.isGroupMsg === false) {
+        else if (message.body === 'Exam' && message.isGroupMsg === false) {
             console.log(message);
             const ExamOptions = [
                 {
