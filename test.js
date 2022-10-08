@@ -1,75 +1,57 @@
-// const venom = require('venom-bot');
-// const { ListenerLayer } = require('venom-bot/dist/api/layers/listener.layer');
-const GTU = require('./Data/SelectionData');
-const prompt = require('prompt-sync')({ sigint: true });
-let a = "Basic_Electrical_Engineering";
-console.log(GTU.Course.BE.Computer_Engineering.one[a]);
-// const mylist = require('./abc.js');
-// venom
-//     .create({
-//         session: 'Test-Session', //name of session
-//         multidevice: true // for version not multidevice use false.(default: true)
-//     })
-//     .then((client) => start(client))
-//     .catch((erro) => {
-//         console.log(erro);
-//     });
+const fs = require('fs');
+const venom = require('venom-bot');
 
-// // selector = (key) => {
-// //     let a;
-// //     a = prompt("Enter the key");
-// //     if (key[a] == undefined) {
-// //         console.log(key);
-// //         return key;
-// //     }
-// //     selector(key[a]);
-// // }
+venom
+    .create(
+        'Test-session',
+        (base64Qr, asciiQR, attempts, urlCode) => {
+            console.log(asciiQR); // Optional to log the QR in the terminal
+            let matches = base64Qr.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+                response = {};
 
-// // let NewKey = selector(GTU);
+            if (matches.length !== 3) {
+                return new Error('Invalid input string');
+            }
+            response.type = matches[1];
+            response.data = new Buffer.from(matches[2], 'base64');
 
-// // console.log(NewKey);
-// client.onMessage((message) => {
-//     const List = [
-//         {
-//             title: "this is the title",
-//             rows: [
-//                 mylist
-
-//             ]
-
-//         }
-//     ]
-//     client.sendListMenu(message.from, '', '', 'Select the branch:', 'Select', list)
-// }
+            let imageBuffer = response;
+            require('fs').writeFile(
+                './public/QRimage.png',
+                imageBuffer['data'],
+                'binary',
+                function (err) {
+                    if (err != null) {
+                        console.log(err);
+                    }
+                }
+            );
+        },
+        undefined,
+        { logQR: false }
+    )
+    .then((client) => {
+        start(client);
+    })
+    .catch((erro) => {
+        console.log(erro);
+        fs.unlink(__dirname + '/public/QRimage.png', () => {
+            console.log('QR is deleted');
+        });
+    });
 
 
-// )
-
-
-// // const course = {
-
-// //     Chemistry: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110002.pdf",
-// //     English: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110002.pdf",
-// //     Programming_for_Problem_Solving: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110003.pdf",
-// //     Basic_Electrical_Engineering: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110005.pdf",
-// //     Basic_Mechanical_Engineering: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110006.pdf",
-// //     Environmental_Sciences: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110007.pdf",
-// //     Workshop_Manufacturing_Practices: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110012.pdf",
-// //     Engineering_Graphics_Design: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110013.pdf ",
-// //     Mathematics_1: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110014.pdf",
-// //     Mathematics_2: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110015.pdf",
-// //     Basic_Electronics: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110016.pdf",
-// //     Induction_Program: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110017.pdf",
-// //     Physics: "https://s3-ap-southeast-1.amazonaws.com/gtusitecirculars/Syallbus/3110018.pdf"
-
-
-// // }
-
-// // let courseFinder = (courseName) => {
-// //     if (course[courseName]) {
-// //         console.log(course[courseName]);
-// //         return course[courseName];
-// //     }
-// // }
-
-// // courseFinder("English")
+function start(client) {
+    client.onMessage((message) => {
+        if (message.body === 'Hi' && message.isGroupMsg === false) {
+            client
+                .sendText(message.from, 'Welcome Venom 🕷')
+                .then((result) => {
+                    console.log('Result: ', result); //return object success
+                })
+                .catch((erro) => {
+                    console.error('Error when sending: ', erro); //return object error
+                });
+        }
+    });
+}
