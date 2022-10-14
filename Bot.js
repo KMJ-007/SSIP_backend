@@ -771,4 +771,5 @@ function start(client) {
 
 
 }
-modules.exports = start;
+
+module.exports = start;
