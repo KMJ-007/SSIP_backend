@@ -10,11 +10,14 @@ const publicpath = __dirname + '/public';
 console.log(publicpath);
 app.use( express.static(publicpath));
 
+startBot;
 app.get('/', async (req, res) => {
-    startBot;
     res.sendFile(__dirname + "/views/Index.html");
 });
-
+app.get('/restart',async(req,res)=>{
+    startBot;
+    res.sendFile(__dirname + "/views/Index.html");
+})
 
 app.listen(4000, (err) => {
     if (err) {
