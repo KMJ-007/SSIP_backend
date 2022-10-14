@@ -2,9 +2,9 @@ const express = require('express');
 // const cors = require('cors');
 const startBot = require('./Bot');
 const app = express();
-app.use(cors({
-    origin: "*"
-}))
+// app.use(cors({
+//     origin: "*"
+// }))
 
 const publicpath = __dirname + '/public';
 console.log(publicpath);
