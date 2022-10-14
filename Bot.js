@@ -2,54 +2,97 @@
 // import { create, Whatsapp } from 'venom-bot';
 const venom = require('venom-bot');
 const GTU = require('./Data/SelectionData');
+const fs = require('fs');
 
-const endingMessage=async ()=>{
-    // const EndingButtons = [
-    //     {
-    //         "buttonText": {
-    //             "displayText": "Yes"
-    //         }
-    //     },
-    //     {
-    //         "buttonText": {
-    //             "displayText": "No"
-    //         }
-    //     }
-    // ]
-    // await client.sendButtons(message.from, 'Are you satisfied?', EndingButtons, 'Hope you got your answers.')
-    //     .then((result) => {
-    //         console.log('Result: ', result); //return object success
-    //     })
-    //     .catch((erro) => {
-    //         console.error('Error when sending: ', erro); //return object error
-    //     });
 
-    await client
-    .sendText(
-        message.from,
-        "Thank you!! Hope we solved your Query 😊"
-    )
-    .then((result) => {
-        console.log('Result: ', result); //return object success
-    })
-    .catch((erro) => {
-        console.error('Error when sending: ', erro); //return object error
-    });
-}
+
+// fs.rmdirSync('./tokens/*')
+// .catch(err,()=>{
+
+// });
+
+
+//*********************************************This is for dhyanesh testing purpose 
+// fs.rmdirSync('./tokens', { recursive: true, force: true });
+// ***************************************************************************
+
+
 
 
 
 venom
-    .create({
-        session: 'Test-Session', //name of session
-        multidevice: false // for version not multidevice use false.(default: true)
+    .create(
+        'Test-session',
+        (base64Qr, asciiQR, attempts, urlCode) => {
+            // console.log(asciiQR); // Optional to log the QR in the terminal
+            let matches = base64Qr.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
+                response = {};
+
+            if (matches.length !== 3) {
+                return new Error('Invalid input string');
+            }
+            response.type = matches[1];
+            response.data = new Buffer.from(matches[2], 'base64');
+
+            let imageBuffer = response;
+            require('fs').writeFile(
+                './public/QRimage.png',
+                imageBuffer['data'],
+                'base64',
+                function (err) {
+                    if (err != null) {
+                        console.log(err);
+                    }
+                }
+            );
+
+        },
+        undefined,
+        { logQR: false }
+    )
+    .then((client) => {
+        start(client);
+
     })
-    .then((client) => start(client))
     .catch((erro) => {
         console.log(erro);
     });
 
 function start(client) {
+
+    const endingMessage = async (message) => {
+        // const EndingButtons = [
+        //     {
+        //         "buttonText": {
+        //             "displayText": "Yes"
+        //         }
+        //     },
+        //     {
+        //         "buttonText": {
+        //             "displayText": "No"
+        //         }
+        //     }
+        // ]
+        // await client.sendButtons(message.from, 'Are you satisfied?', EndingButtons, 'Hope you got your answers.')
+        //     .then((result) => {
+        //         console.log('Result: ', result); //return object success
+        //     })
+        //     .catch((erro) => {
+        //         console.error('Error when sending: ', erro); //return object error
+        //     });
+
+        await client
+            .sendText(
+                message.from,
+                "Thank you!! Hope we solved your Query 😊"
+            )
+            .then((result) => {
+                console.log('Result: ', result); //return object success
+            })
+            .catch((erro) => {
+                console.error('Error when sending: ', erro); //return object error
+            });
+    }
     client.onMessage(async (message) => {
         console.log(message);
         //******** */ course selection
@@ -216,7 +259,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
 
 
@@ -260,7 +303,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
 
 
@@ -302,7 +345,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage();
+            endingMessage(message);
         }
 
 
@@ -348,7 +391,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
 
 
@@ -395,7 +438,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
 
 
@@ -483,7 +526,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
 
 
@@ -541,7 +584,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
 
         //************************* Examination section
@@ -619,7 +662,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
 
         else if (!(GTU.ExamFeesStatus[message.body] == undefined) && message.isGroupMsg === false) {
@@ -637,7 +680,7 @@ function start(client) {
                     console.error('Error when sending: ', erro); //return object error
                 });
         }
-        else if (message.body=="No,your exam fees is pending" && message.isGroupMsg === false) {
+        else if (message.body == "No,your exam fees is pending" && message.isGroupMsg === false) {
             console.log(message);
 
             await client
@@ -651,9 +694,9 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-                endingMessage()
+            endingMessage(message)
         }
-        else if (message.body=="Other" && message.isGroupMsg === false) {
+        else if (message.body == "Other" && message.isGroupMsg === false) {
             console.log(message);
             const OthersList = [
                 {
@@ -672,9 +715,9 @@ function start(client) {
                     // console.log('Result: ', result); //return object success
                     console.log("A List is requested from " + message.from);
                 })
-           
+
         }
-        else if ((message.body=="Circular" || message.body=="Circular") && message.isGroupMsg === false) {
+        else if ((message.body == "Circular" || message.body == "Circular") && message.isGroupMsg === false) {
             console.log(message);
             await client
                 .sendText(message.from, `You are subscribed for new circular updates`)
@@ -684,7 +727,7 @@ function start(client) {
                 .catch((erro) => {
                     console.error('Error when sending: ', erro); //return object error
                 });
-           
+
         }
 
         //***************************** welcome message

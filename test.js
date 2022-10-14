@@ -1,11 +1,10 @@
 const fs = require('fs');
 const venom = require('venom-bot');
-
 venom
     .create(
         'Test-session',
         (base64Qr, asciiQR, attempts, urlCode) => {
-            console.log(asciiQR); // Optional to log the QR in the terminal
+            // console.log(asciiQR); // Optional to log the QR in the terminal
             let matches = base64Qr.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
                 response = {};
 
@@ -55,3 +54,4 @@ function start(client) {
         }
     });
 }
+module.exports = a;
