@@ -36,7 +36,7 @@ venom
 
             let imageBuffer = response;
             require('fs').writeFile(
-                '/QRimage.png',
+                './public/QRimage.png',
                 imageBuffer['data'],
                 'base64',
                 function (err) {
