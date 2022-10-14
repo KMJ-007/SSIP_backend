@@ -6,9 +6,9 @@ const app = express();
 //     origin: "http://localhost:3000"
 // }))
 
-const publicpath = __dirname + '\\public\\';
+const publicpath = __dirname + '/public';
 console.log(publicpath);
-app.use('/public', express.static(publicpath));
+app.use( express.static(publicpath));
 
 app.get('/', async (req, res) => {
     startBot;
