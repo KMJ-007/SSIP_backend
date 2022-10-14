@@ -19,7 +19,7 @@ const fs = require('fs');
 
 function startTheBot(){
 
-
+console.log("starting your bot");
 venom
     .create(
         'GTU-session',
