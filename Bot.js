@@ -49,7 +49,7 @@ venom
         },
         undefined,
         {  multidevice: true,
-            logQR: false 
+            logQR: true 
         }
     )
     .then((client) => {
