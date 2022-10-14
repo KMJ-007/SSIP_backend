@@ -1,6 +1,6 @@
 const express = require('express');
 // const cors = require('cors');
-const startBot = require('./Bot').start;
+const startBot = require('./Bot');
 const app = express();
 // app.use(cors({
 //     origin: "http://localhost:3000"
@@ -11,7 +11,7 @@ console.log(publicpath);
 app.use('/public', express.static(publicpath));
 
 app.get('/', async (req, res) => {
-     startBot();
+    startBot;
     res.sendFile(__dirname + "/views/Index.html");
 });
 
