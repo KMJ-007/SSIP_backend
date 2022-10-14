@@ -1,6 +1,6 @@
 const express = require('express');
 // const cors = require('cors');
-
+const startBot = require('./Bot').start;
 const app = express();
 // app.use(cors({
 //     origin: "http://localhost:3000"
@@ -10,7 +10,8 @@ const publicpath = __dirname + '\\public\\';
 console.log(publicpath);
 app.use('/public', express.static(publicpath));
 
-app.get('/image', async (req, res) => {
+app.get('/', async (req, res) => {
+    await startBot();
     res.sendFile(__dirname + "/views/Index.html");
 });
 
