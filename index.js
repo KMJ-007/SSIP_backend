@@ -11,7 +11,7 @@ console.log(publicpath);
 app.use('/public', express.static(publicpath));
 
 app.get('/', async (req, res) => {
-    await startBot();
+     startBot();
     res.sendFile(__dirname + "/views/Index.html");
 });
 
