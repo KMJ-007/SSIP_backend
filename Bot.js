@@ -13,7 +13,7 @@ const fs = require('fs');
 
 
 //*********************************************This is for dhyanesh testing purpose 
-fs.rmdirSync('/QRimage.png', { recursive: true, force: true });
+// fs.rmdirSync('/QRimage.png', { recursive: true, force: true });
 // ***************************************************************************
 
 
