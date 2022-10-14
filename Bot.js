@@ -17,7 +17,7 @@ const fs = require('fs');
 // ***************************************************************************
 
 
-
+function startTheBot(){
 
 
 venom
@@ -53,6 +53,7 @@ venom
         }
     )
     .then((client) => {
+        console.log()
         start(client);
 
     })
@@ -61,7 +62,7 @@ venom
     });
 
 function start(client) {
-
+    console.log("bot is in the start function")
     const endingMessage = async (message) => {
         // const EndingButtons = [
         //     {
@@ -773,5 +774,5 @@ function start(client) {
 
 
 }
-
-module.exports = start;
+}
+module.exports = startTheBot;

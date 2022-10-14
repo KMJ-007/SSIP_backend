@@ -14,7 +14,10 @@ startBot;
 app.get('/', async (req, res) => {
     res.sendFile(__dirname + "/views/Index.html");
 });
-
+app.get('/restart',async(req,res)=>{
+    startBot;
+    res.sendFile(__dirname + "/views/Index.html");
+})
 
 app.listen(4000, (err) => {
     if (err) {
