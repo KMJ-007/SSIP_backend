@@ -13,18 +13,18 @@ const fs = require('fs');
 
 
 //*********************************************This is for dhyanesh testing purpose 
-// fs.rmdirSync('/QRimage.png', { recursive: true, force: true });
+fs.rmdirSync('./tokens', { recursive: true, force: true });
 // ***************************************************************************
 
 
-function startTheBot(){
+
 
 console.log("starting your bot");
 venom
     .create(
         'GTU-session',
         (base64Qr, asciiQR, attempts, urlCode) => {
-            // console.log(asciiQR); // Optional to log the QR in the terminal
+            console.log(asciiQR); // Optional to log the QR in the terminal
             let matches = base64Qr.match(/^data:([A-Za-z-+\/]+);base64,(.+)$/),
                 response = {};
 
@@ -48,8 +48,9 @@ venom
 
         },
         undefined,
-        {  multidevice: true,
-            logQR: false 
+        {
+            // multidevice: true,
+            logQR: false
         }
     )
     .then((client) => {
@@ -107,11 +108,11 @@ function start(client) {
                         "displayText": "Course"
                     }
                 },
-                {
-                    "buttonText": {
-                        "displayText": "Admission"
-                    }
-                },
+                // {
+                //     "buttonText": {
+                //         "displayText": "Admission"
+                //     }
+                // },
                 {
                     "buttonText": {
                         "displayText": "Exam"
@@ -708,7 +709,7 @@ function start(client) {
                         { title: "Scholarship", description: "" },
                         { title: "100 Points Activity", description: "" },
                         { title: "Events", description: "" },
-                        { title: "Things I should Know", description: "" },
+                        // { title: "Things I should Know", description: "" },
                         // { title: "Things I should Know", description: "" },
                     ]
                 }
@@ -774,5 +775,3 @@ function start(client) {
 
 
 }
-}
-module.exports = startTheBot;

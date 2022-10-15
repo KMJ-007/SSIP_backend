@@ -8,14 +8,14 @@ const app = express();
 
 const publicpath = __dirname + '/public';
 console.log(publicpath);
-app.use( express.static(publicpath));
+app.use(express.static(publicpath));
 
 app.get('/', async (req, res) => {
-    console.log("hey you are at home route")
     startBot;
+    console.log("hey you are at home route")
     res.sendFile(__dirname + "/views/Index.html");
 });
-app.get('/restart',async(req,res)=>{
+app.get('/restart', async (req, res) => {
     startBot;
     res.sendFile(__dirname + "/views/Index.html");
 })
