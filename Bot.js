@@ -36,7 +36,7 @@ venom
 
             let imageBuffer = response;
             require('fs').writeFile(
-                '/QRimage.png',
+                './public/QRimage.png',
                 imageBuffer['data'],
                 'base64',
                 function (err) {
@@ -48,9 +48,14 @@ venom
 
         },
         undefined,
+<<<<<<< HEAD
         {
             // multidevice: true,
             logQR: false
+=======
+        {  multidevice: true,
+            logQR: true 
+>>>>>>> ea7f778e3f51da92c26a94705a9ea21229dab39c
         }
     )
     .then((client) => {
